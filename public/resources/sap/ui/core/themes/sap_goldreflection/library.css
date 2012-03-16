@@ -1,0 +1,307 @@
+
+/*!
+ * SAP UI HTML5 Rendering Library ('Phoenix')
+ *
+ * (c) Copyright 2009-2011 SAP AG. All rights reserved
+ */
+
+/*** global CSS - 'base' theme ***/
+/* Global CSS for 'base' theme */
+
+
+
+.sapUiBody {
+	background-color: #F2F2F2;
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.sapUiArea {
+	background-color: #F2F2F2;
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+/* 
+ * used for static (Core) and hidden (HTML) area 
+ * (TODO: think about renaming static area also to hidden since static is not
+ *        required for newer browsers anymore => position: static) 
+ */
+.sapUiHidden {
+	position: absolute;
+	visibility: hidden;
+	top: -10000px;
+	background-color: #F2F2F2; /* repeat the body style in case the application adapts it */
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.sapUiCorePlaintext {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+.sapUiCoreDefaultFont {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.sapUiCoreDefaultCursor {
+	cursor: default;
+}
+
+.sapUiBLy {
+	background-color: #CCCCCC;
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	position: fixed;
+	outline: 0 none;
+}
+.sapUiBliLy {
+	background-color: transparent;
+	border: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	opacity: 0.01;
+	filter: alpha(opacity = 1);
+}
+/*** global CSS - 'sap_goldreflection' theme ***/
+/* Global CSS for 'sap_goldreflection' theme */
+
+
+.sapUiBLy {
+	background-color: black;
+	opacity: 0.4;
+	filter: alpha(opacity = 40);
+}
+/*** BlindLayer CSS - 'base' theme ***/
+.sapUiBliLy {
+	background-color: transparent;
+	border: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	opacity: 0.01;
+	filter: alpha(opacity = 1);
+}
+/*** BlindLayer CSS - 'sap_goldreflection' theme ***/
+.sapUiBly {
+	background-color: #000;
+	opacity: 0.8;
+	filter: alpha(opacity = 0.8);
+}
+/*** BrowserScrollbar CSS - 'sap_goldreflection' theme ***/
+
+
+
+/****** IE ******/
+
+html[data-sap-ui-browser*="ie"] .sapUiBody {
+	scrollbar-3dlight-color: #F2F2F2;
+	scrollbar-arrow-color: #000000; 
+	scrollbar-base-color: transparent;
+	scrollbar-darkshadow-color: #F2F2F2;
+	scrollbar-face-color: #B8C2CC;
+	scrollbar-highlight-color: #F2F2F2;
+	scrollbar-shadow-color: #B8C2CC;
+	scrollbar-track-color: #F2F2F2;
+}
+
+
+/****** Safari ******/
+
+/*Thumb*/
+
+html[data-sap-ui-browser*="sf"] .sapUiBody ::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+    border: 1px solid transparent;
+    background-color: transparent;
+}
+
+html[data-sap-ui-browser*="sf"] .sapUiBody ::-webkit-scrollbar-thumb {
+    background-color: #B8C2CC; 
+    background-position: center center;
+    background-repeat: no-repeat;
+	background-clip: content-box;
+}
+
+html[data-sap-ui-browser*="sf"] .sapUiBody ::-webkit-scrollbar-thumb:horizontal {
+    background-image: url('img/scrollbar_grip_horizontal.png');
+    min-width: 20px;
+    height: 8px;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+}
+
+html[data-sap-ui-browser*="sf"] .sapUiBody ::-webkit-scrollbar-thumb:horizontal:hover {
+	border-top: 4px solid #007DC0;
+    border-bottom: 4px solid #007DC0;
+    background-color: #007DC0;
+}
+
+html[data-sap-ui-browser*="sf"] .sapUiBody ::-webkit-scrollbar-thumb:vertical {
+    background-image: url('img/scrollbar_grip_vertical.png');
+    min-height: 20px;
+    width: 8px;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+}
+
+html[data-sap-ui-browser*="sf"] .sapUiBody ::-webkit-scrollbar-thumb:vertical:hover {
+    border-left: 4px solid #007DC0;
+    border-right: 4px solid #007DC0;
+    background-color: #007DC0;
+}
+
+/*Scrollbar corner*/
+
+html[data-sap-ui-browser*="sf"] .sapUiBody ::-webkit-scrollbar-corner {
+	background-color: transparent;
+}
+
+/*Scrollbar buttons*/
+
+html[data-sap-ui-browser*="sf"] .sapUiBody ::-webkit-scrollbar-button {
+    background-color: transparent;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+}
+
+html[data-sap-ui-browser*="sf"] .sapUiBody ::-webkit-scrollbar-button:horizontal:increment {
+    background-image: url('img/arrow_RIGHT.png');
+}
+
+html[data-sap-ui-browser*="sf"] .sapUiBody ::-webkit-scrollbar-button:horizontal:increment:hover {
+	background-color: #007DC0;
+    background-image: url('img/arrow_RIGHT_hover.png');
+}
+
+html[data-sap-ui-browser*="sf"] .sapUiBody ::-webkit-scrollbar-button:horizontal:decrement {
+    background-image: url('img/arrow_LEFT.png');
+}
+
+html[data-sap-ui-browser*="sf"] .sapUiBody ::-webkit-scrollbar-button:horizontal:decrement:hover {
+	background-color: #007DC0;
+    background-image: url('img/arrow_LEFT_hover.png');
+}
+
+html[data-sap-ui-browser*="sf"] .sapUiBody ::-webkit-scrollbar-button:vertical:increment {
+    background-image: url('img/arrow_DOWN.png');
+}
+
+html[data-sap-ui-browser*="sf"] .sapUiBody ::-webkit-scrollbar-button:vertical:increment:hover {
+	background-color: #007DC0;
+    background-image: url('img/arrow_DOWN_hover.png');
+}
+
+html[data-sap-ui-browser*="sf"] .sapUiBody ::-webkit-scrollbar-button:vertical:decrement {
+    background-image: url('img/arrow_UP.png');
+}
+
+html[data-sap-ui-browser*="sf"] .sapUiBody ::-webkit-scrollbar-button:vertical:decrement:hover {
+	background-color: #007DC0;
+    background-image: url('img/arrow_UP_hover.png');
+}
+/*** BusyIndicator CSS - 'base' theme ***/
+.sapUiBusy {
+  background-image: url(img/Busy.gif);
+  display: block;
+  width: 48px;
+  height: 48px;
+  outline: none;
+  cursor: wait;
+}
+
+.sapUiBlyBusy {
+	cursor: wait;
+}
+/*** BusyIndicator CSS - 'sap_goldreflection' theme ***/
+.sapUiBusy {
+	height: 5px;
+	width: 100%;
+	-moz-background-size: 500px 5px;
+	-webkit-background-size: 500px 5px;
+	background-size: 500px 5px;
+	background-image: -moz-linear-gradient(left, rgba(239,170,0,0), rgba(239,170,0,1) 30%, rgba(239,170,0,1) 70%, rgba(239,170,0,0));
+	background-image: -webkit-linear-gradient(left, rgba(239,170,0,0), rgba(239,170,0,1) 30%, rgba(239,170,0,1) 70%, rgba(239,170,0,0));
+	background-image: -webkit-gradient(linear, left top, right top, color-stop(0, rgba(239,170,0,0)), color-stop(0.3, rgba(239,170,0,1)), color-stop(0.7, rgba(239,170,0,1)), color-stop(1, rgba(239,170,0,0)));
+	background-image: linear-gradient(left, rgba(239,170,0,0), rgba(239,170,0,1) 30%, rgba(239,170,0,1) 70%, rgba(239,170,0,0));
+	/* IE is handled using a real bg image */
+	background-repeat: no-repeat;
+}
+
+html[data-sap-ui-browser^=ie] .sapUiBusy {
+	background-color: white;
+	background-image: url(img/Busy.png);
+	background-repeat: repeat-y;
+}
+/*** ScrollBar CSS - 'base' theme ***/
+
+/* ============================================= */
+/* CSS for control sap.ui.core/ScrollBar.control */
+/* ============================================= */
+
+.sapuicore-ScrollBar{
+  color: #000000;
+  border: 1px solid blue;
+}
+/*** Shadow CSS - 'base' theme ***/
+.sapUiShd {
+	box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.4);
+}
+/*** Shadow CSS - 'sap_goldreflection' theme ***/
+html[data-sap-ui-browser=ie8] .sapUiShd {
+	outline: 2px solid #BFBFBF;
+}
+/*** TechnicalInfo CSS - 'base' theme ***/
+.sapUiTInf {
+  border: 1px solid #CCCCCC;
+	background: #F2F2F2;
+  padding: 6px;
+}
+
+.sapUiTInfCfg {
+	font-size:0.9em;
+}
+
+.sapUiTInfMList {
+	font-size:0.9em;
+	color:#999999;
+	overflow-y:auto;
+	max-height:12em;
+}
+
+.sapUiTInfMEmbd {
+	color:#aaaaaa;
+} 
+
+.sapUiTInfMFail {
+	text-decoration:line-through;
+}
+
+.sapUiTInfMMore {
+	text-decoration:underline;
+	cursor:pointer;
+}
+/*** View CSS - 'base' theme ***/
+
+/* ========================================= */
+/* CSS for control sap.ui.core/View.control  */
+/* ========================================= */
+.sapUiView {
+	display: inline-block;
+}
