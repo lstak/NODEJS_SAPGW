@@ -2,6 +2,7 @@ var http = require('http'),
     express = require('express'),
     xml2js = require('xml2js'),
     app = express.createServer(),
+    cache = {},
     port = process.env.PORT;
     
     
@@ -12,7 +13,14 @@ var sap_gateway = {
 };
     
 function proxy (req, res) {
-    http.get(sap_gateway, function (gw_res) {
+    var remote = {
+            host: sap_gateway.host,
+            path: req.url+ "?&sap-user=GW@ESW&sap-password=ESW4GW"
+        }
+    console.log(remote);
+    
+    http.get(remote, function (gw_res) {
+        res.header('Content-Type','application/atom+xml;type=feed');
         gw_res.pipe(res);
     });
 }
@@ -22,6 +30,7 @@ function workbook (req, res) {
     res.header('content-disposition','attachment;filename=SalesOrders.xml');
     res.header('Content-Type','application/vnd.ms-excel');
    
+    
     http.get(sap_gateway, function (gw_res) {
         var xml = ''
         gw_res.on("data", function (chunk) {
@@ -65,12 +74,15 @@ function workbook (req, res) {
     });
 };  
    
-
+   
+function home (req, res) {
+    res.redirect('/public/index.html')
+}
 
 app.use('/public', express.static(__dirname + '/public'));
 
-
-app.get('/sap*', proxy);
+app.get('/', home);
+app.get('/sap/*', proxy);
 app.get('/workbook', workbook);
 
 
