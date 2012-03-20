@@ -2,14 +2,19 @@ var http = require('http'),
     express = require('express'),
     xml2js = require('xml2js'),
     app = express.createServer(),
-    port = process.env.PORT,
-    username = 'GW@ESW',
+    port = process.env.PORT;
+
+
+
+// The SalesOrder service requires authentication
+// get the username/password from the SCN page. 
+var username = 'GW@ESW',
     password = 'ESW4GW';
     
 var sapgw = {
     host: 'gw.esworkplace.sap.com',
     
-    // we'll use Basic authentication
+    // set up Basic authentication
     headers:  { 
         'Authorization': 'Basic ' + new Buffer(username + ':' + password).toString('base64')
     }
@@ -25,9 +30,12 @@ function proxy (user_request, user_response) {
     
     // Use a client request to call SAP Gateway
     http.get(sapgw, function (sapgw_response) {
+        
         // Include a content type in the response header
         user_response.header('Content-Type','application/atom+xml;type=feed');
-        // then just pipe the response data from the Gateway to the user.
+        
+        // In Node, http responses are streams. You can just
+        // pipe the response data from the Gateway to the user.
         sapgw_response.pipe(user_response);
     });
 }
@@ -38,24 +46,24 @@ function workbook (req, res) {
     // We will fetch the SalesOrderCollection from SAP Gateway
     sapgw.path = '/sap/opu/sdata/IWFND/SALESORDER/SalesOrderCollection';
            
-    
+    // Kick-off by fetching the SalesOrderCollection..       
     http.get(sapgw, function (sapgw_response) {
         var xml = '';
         
         // Every time Node receives a chunk of data
         // from SAP Gateway, the 'data' event fires.
-        // Just collect the complete response
+        // We just collect all chunks into a string
         sapgw_response.on("data", function (chunk) {
             xml += chunk
         });
         
-        // The 'end' event fires when the SAP Gateway response is complete 
-        // We can start processing the XML response...
+        // The 'end' event fires when the SAP Gateway response is done 
+        // We can start processing the xml string...
         sapgw_response.on("end", function () {
             
             // Node.js doesn't automatically parse the XML (like XmlHttpRequest),
             // so we need to do that explicitly.
-            // We will use the xml2js module to parse an XML string
+            // We will use the xml2js module to parse the XML string
             // into a JavaScript object
             
             // Create a parser to convert the XML to JavaScript object
@@ -67,7 +75,6 @@ function workbook (req, res) {
                 // The result parameter is a complete representation 
                 // of the parsed XML string.
                 // We need to extract the values we need to render the workbook
-                
                 
                 var rows = [],
                 
@@ -82,8 +89,8 @@ function workbook (req, res) {
                     ];
                 
     
-                // result['atom:entry'] is an array of objects, representing <atom:entry>
-                // in the XML string.
+                // the value of result['atom:entry'] is an array of objects, 
+                // representing <atom:entry>'s in the XML string.
                 // Each entry represents a SalesOrder
                 result['atom:entry'].forEach(function (entry) {
                     var row = {},
