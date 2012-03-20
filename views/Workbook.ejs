@@ -49,7 +49,7 @@
             <Cell><Data ss:Type="String">Tax</Data></Cell>
             <Cell><Data ss:Type="String">Total</Data></Cell>
     </Row>
-<% if (rows.length) { %>
+
     <% rows.forEach(function(row){ %>
         <Row>   
             <Cell><Data ss:Type="String"><%= row.SalesOrderID %></Data></Cell>
@@ -59,7 +59,7 @@
             <Cell><Data ss:Type="Number"><%= row.TotalSum %></Data></Cell>
         </Row>
     <% }) %>
-<% } %>
+
 </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
